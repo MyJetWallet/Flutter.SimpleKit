@@ -1,5 +1,8 @@
 library simple_kit;
 
+/// Core
+export 'core/simple_kit.dart';
+
 /// Colors
 export 'modules/colors/simple_colors.dart';
 
