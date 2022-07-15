@@ -6,6 +6,27 @@ export 'core/simple_kit.dart';
 /// Colors
 export 'modules/colors/simple_colors.dart';
 
+/// Texts
+export 'modules/texts/simple_text_styles.dart';
+
+/// Bottom Navigation Bar
+export 'modules/bottom_navigation_bar/simple_bottom_navigation_bar.dart';
+
+export 'modules/shared/simple_spacers.dart';
+export 'modules/shared/simple_paddings.dart';
+export 'modules/shared/simple_icon_button.dart';
+export 'modules/shared/simple_divider.dart';
+export 'modules/shared/simple_requirement.dart';
+
+/// Headers
+export 'modules/headers/simple_big_header.dart';
+export 'modules/headers/simple_mega_header.dart';
+export 'modules/headers/simple_small_header.dart';
+
+/// Fields
+export 'modules/fields/standard_field/public/simple_standard_field.dart';
+export 'modules/fields/standard_field/public/simple_standard_field_obscure.dart';
+
 /// Buttons
 export 'modules/buttons/basic_buttons/primary_button/public/simple_primary_button_1.dart';
 export 'modules/buttons/basic_buttons/primary_button/public/simple_primary_button_2.dart';
@@ -25,10 +46,23 @@ export 'modules/buttons/simple_floating_button_frame2.dart';
 export 'modules/shared/page_frames/simple_page_frame.dart';
 export 'modules/shared/page_frames/simple_page_frame_with_padding.dart';
 export 'modules/shared/qr_code_fields/simple_address_field_with_copy.dart';
+export 'modules/shared/stack_loader/store/stack_loader_store.dart';
+
+/// Agreements
+export 'modules/agreements/simple_privacy_policy/simple_policy_checkbox.dart';
+export 'modules/agreements/simple_privacy_policy/simple_policy_text.dart';
+
+/// Bottom sheets
+export 'modules/bottom_sheets/components/basic_bottom_sheet/show_basic_bottom_sheet.dart';
+export 'modules/bottom_sheets/components/basic_bottom_sheet/show_basic_modal_bottom_sheet.dart';
+export 'modules/bottom_sheets/components/simple_bottom_sheet_header.dart';
+export 'modules/bottom_sheets/components/simple_shade_animation_stack.dart';
+export 'modules/bottom_sheets/sheets/show_menu_action_sheet.dart';
 
 /// Helpers
 export 'helpers/biometrics_auth_helpers.dart';
 export 'helpers/initials_from.dart';
+export 'helpers/validators/validator.dart';
 
 /// Utils
 export 'utils/constants.dart';

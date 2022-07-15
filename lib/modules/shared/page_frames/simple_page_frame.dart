@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:simple_kit/core/di.dart';
 import 'package:simple_kit/core/simple_kit.dart';
-import 'package:simple_kit/modules/shared/stack_loader/notifier/stack_loader_notifier.dart';
 import 'package:simple_kit/modules/shared/stack_loader/stack_loader.dart';
+import 'package:simple_kit/modules/shared/stack_loader/store/stack_loader_store.dart';
 
 class SPageFrame extends StatelessObserverWidget {
   const SPageFrame({
@@ -18,8 +18,8 @@ class SPageFrame extends StatelessObserverWidget {
   }) : super(key: key);
 
   final Widget? header;
-  final StackLoaderNotifier? loading;
-  final StackLoaderNotifier? loadSuccess;
+  final StackLoaderStore? loading;
+  final StackLoaderStore? loadSuccess;
   final Widget? bottomNavigationBar;
   final String? loaderText;
   final Color color;

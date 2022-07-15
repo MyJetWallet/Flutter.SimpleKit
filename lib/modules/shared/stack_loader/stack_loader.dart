@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:simple_kit/modules/shared/stack_loader/components/loader_background.dart';
 import 'package:simple_kit/modules/shared/stack_loader/components/loader_container.dart';
 import 'package:simple_kit/modules/shared/stack_loader/components/simple_loader_success.dart';
-import 'package:simple_kit/modules/shared/stack_loader/notifier/stack_loader_notifier.dart';
+import 'package:simple_kit/modules/shared/stack_loader/store/stack_loader_store.dart';
 
-class StackLoader extends StatelessWidget {
+class StackLoader extends StatefulObserverWidget {
   const StackLoader({
     Key? key,
     this.loadSuccess,
@@ -15,30 +16,42 @@ class StackLoader extends StatelessWidget {
 
   final Widget child;
   final String? loaderText;
-  final StackLoaderNotifier? loading;
-  final StackLoaderNotifier? loadSuccess;
+  final StackLoaderStore? loading;
+  final StackLoaderStore? loadSuccess;
+
+  @override
+  State<StackLoader> createState() => _StackLoaderState();
+}
+
+class _StackLoaderState extends State<StackLoader> {
+  @override
+  void dispose() {
+    widget.loading?.dispose();
+    widget.loadSuccess?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    //if (loading != null) useValueListenable(loading!);
-    final loadingValue = loading?.value ?? false;
+    final loadingStore = widget.loading ?? StackLoaderStore();
+    final loadSuccessStore = widget.loadSuccess ?? StackLoaderStore();
 
-    //if (loadSuccess != null) useValueListenable(loadSuccess!);
-    final loadSuccessValue = loadSuccess?.value ?? false;
+    final loadingValue = loadingStore.loading;
+    final loadSuccessValue = loadSuccessStore.loading;
 
     return Stack(
       children: [
-        child,
+        widget.child,
         if (loadingValue) ...[
           const LoaderBackground(),
           LoaderContainer(
-            loadingText: loaderText,
+            loadingText: widget.loaderText,
           ),
         ],
         if (loadSuccessValue) ...[
           const LoaderBackground(),
           SimpleLoaderSuccess(
-            loadingText: loaderText,
+            loadingText: widget.loaderText,
           ),
         ],
       ],

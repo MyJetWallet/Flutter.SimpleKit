@@ -3,8 +3,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:simple_kit/core/di.dart';
 import 'package:simple_kit/core/simple_kit.dart';
 import 'package:simple_kit/modules/shared/simple_paddings.dart';
-import 'package:simple_kit/modules/shared/stack_loader/notifier/stack_loader_notifier.dart';
 import 'package:simple_kit/modules/shared/stack_loader/stack_loader.dart';
+import 'package:simple_kit/modules/shared/stack_loader/store/stack_loader_store.dart';
 
 class SPageFrameWithPadding extends StatelessObserverWidget {
   const SPageFrameWithPadding({
@@ -23,7 +23,7 @@ class SPageFrameWithPadding extends StatelessObserverWidget {
   final Widget child;
   final Color color;
   final bool resizeToAvoidBottomInset;
-  final StackLoaderNotifier? loading;
+  final StackLoaderStore? loading;
   final Widget? bottomNavigationBar;
 
   @override
