@@ -7,7 +7,11 @@ import 'package:simple_kit/modules/theme/simple_dark_theme.dart';
 import 'package:simple_kit/modules/theme/simple_light_theme.dart';
 import 'package:simple_kit/utils/enum.dart';
 
+import 'di.dart';
+
 part 'simple_kit.g.dart';
+
+final sKit = sGetIt.get<SimpleKit>();
 
 // ignore: library_private_types_in_public_api
 class SimpleKit = _SimpleKitBase with _$SimpleKit;

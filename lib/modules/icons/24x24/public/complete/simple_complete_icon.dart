@@ -15,7 +15,7 @@ class SCompleteIcon extends StatelessObserverWidget {
 
   @override
   Widget build(BuildContext context) {
-    return getIt<SimpleKit>().currentTheme == STheme.dark
+    return sKit.currentTheme == STheme.dark
         ? SimpleLightCompleteIcon(color: color)
         : SimpleLightCompleteIcon(color: color);
   }

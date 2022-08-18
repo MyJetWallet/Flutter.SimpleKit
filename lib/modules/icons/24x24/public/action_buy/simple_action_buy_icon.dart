@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:simple_kit/core/di.dart';
 import 'package:simple_kit/core/simple_kit.dart';
 import 'package:simple_kit/modules/icons/24x24/light/action_buy/simple_light_action_buy_icon.dart';
 import 'package:simple_kit/utils/enum.dart';
@@ -15,7 +14,7 @@ class SActionBuyIcon extends StatelessObserverWidget {
 
   @override
   Widget build(BuildContext context) {
-    return getIt<SimpleKit>().currentTheme == STheme.dark
+    return sKit.currentTheme == STheme.dark
         ? SimpleLightActionBuyIcon(color: color)
         : SimpleLightActionBuyIcon(color: color);
   }

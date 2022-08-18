@@ -15,7 +15,7 @@ class SSelfieIcon extends StatelessObserverWidget {
 
   @override
   Widget build(BuildContext context) {
-    return getIt<SimpleKit>().currentTheme == STheme.dark
+    return sKit.currentTheme == STheme.dark
         ? SimpleLightSelfieIcon(color: color)
         : SimpleLightSelfieIcon(color: color);
   }

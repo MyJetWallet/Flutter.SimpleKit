@@ -15,7 +15,7 @@ class SAngleDownIcon extends StatelessObserverWidget {
 
   @override
   Widget build(BuildContext context) {
-    return getIt<SimpleKit>().currentTheme == STheme.dark
+    return sKit.currentTheme == STheme.dark
         ? SimpleLightAngleDownIcon(color: color)
         : SimpleLightAngleDownIcon(color: color);
   }

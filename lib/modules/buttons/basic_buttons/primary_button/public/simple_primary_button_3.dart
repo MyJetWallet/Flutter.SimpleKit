@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:simple_kit/core/di.dart';
 import 'package:simple_kit/core/simple_kit.dart';
 import 'package:simple_kit/utils/enum.dart';
 import '../light/simple_light_primary_button_3.dart';
@@ -21,7 +20,7 @@ class SPrimaryButton3 extends StatelessObserverWidget {
 
   @override
   Widget build(BuildContext context) {
-    return getIt<SimpleKit>().currentTheme == STheme.dark
+    return sKit.currentTheme == STheme.dark
         ? SimpleLightPrimaryButton3(
             active: active,
             name: name,

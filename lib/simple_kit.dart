@@ -2,6 +2,8 @@
 
 library simple_kit;
 
+export 'core/simple_kit.dart' show sKit;
+
 /// Account Banners
 export 'modules/account/banners/simple_account_banner.dart';
 

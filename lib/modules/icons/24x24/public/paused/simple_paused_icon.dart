@@ -10,7 +10,7 @@ class SPausedIcon extends StatelessObserverWidget {
 
   @override
   Widget build(BuildContext context) {
-    return getIt<SimpleKit>().currentTheme == STheme.dark
+    return sKit.currentTheme == STheme.dark
         ? const SimpleLightPausedIcon()
         : const SimpleLightPausedIcon();
   }

@@ -6,7 +6,5 @@ import 'package:simple_kit/modules/theme/simple_light_theme.dart';
 import 'package:simple_kit/simple_kit.dart';
 
 CupertinoThemeData sTheme() {
-  return getIt<SimpleKit>().currentTheme == STheme.dark
-      ? sDarkTheme
-      : sLightTheme;
+  return sKit.currentTheme == STheme.dark ? sDarkTheme : sLightTheme;
 }

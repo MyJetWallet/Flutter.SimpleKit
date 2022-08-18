@@ -10,7 +10,7 @@ class SIndexHistoryIcon extends StatelessObserverWidget {
 
   @override
   Widget build(BuildContext context) {
-    return getIt<SimpleKit>().currentTheme == STheme.dark
+    return sKit.currentTheme == STheme.dark
         ? const SimpleLightIndexHistoryIcon()
         : const SimpleLightIndexHistoryIcon();
   }

@@ -15,7 +15,7 @@ class SInfoPressedIcon extends StatelessObserverWidget {
 
   @override
   Widget build(BuildContext context) {
-    return getIt<SimpleKit>().currentTheme == STheme.dark
+    return sKit.currentTheme == STheme.dark
         ? SimpleLightInfoPressedIcon(color: color)
         : SimpleLightInfoPressedIcon(color: color);
   }

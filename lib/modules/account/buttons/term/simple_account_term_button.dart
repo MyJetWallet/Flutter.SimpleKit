@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simple_kit/modules/shared/simple_transparent_ink_well.dart';
 
 import '../../../../simple_kit.dart';
 
