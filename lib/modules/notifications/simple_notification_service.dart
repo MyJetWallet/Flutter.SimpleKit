@@ -18,7 +18,12 @@ class SNotificationNotifier extends StateNotifier<Queue<NotificationModel>> {
 
   NotificationModel? _currentNotification;
 
-  void showError(String message, {int duration = 2, int? id}) {
+  void showError(
+    String message, {
+    int duration = 2,
+    int? id,
+    bool needFeedback = false,
+  }) {
     _addToQueue(
       NotificationModel(
         id: id,

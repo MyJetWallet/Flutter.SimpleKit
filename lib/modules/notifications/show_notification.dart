@@ -1,6 +1,6 @@
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
-import 'package:simple_kit/modules/notifications/simple_notification_box.dart';
+import 'package:flutter/services.dart';
 
 import '../../../simple_kit.dart';
 
@@ -8,7 +8,12 @@ Future showNotification(
   BuildContext context,
   String message, [
   int duration = 2,
+  bool needFeedback = false,
 ]) {
+  if (needFeedback) {
+    HapticFeedback.lightImpact();
+  }
+
   return showFlash(
     context: context,
     duration: Duration(seconds: duration),
