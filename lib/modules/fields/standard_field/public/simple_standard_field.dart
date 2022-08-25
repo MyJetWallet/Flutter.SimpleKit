@@ -34,6 +34,7 @@ class SStandardField extends StatelessObserverWidget {
     this.enabled = true,
     this.hideSpace = false,
     this.isError = false,
+    this.hasManualError = false,
     this.validators = const [],
     required this.labelText,
   }) : super(key: key);
@@ -63,6 +64,7 @@ class SStandardField extends StatelessObserverWidget {
   final bool hideSpace;
   final String labelText;
   final bool isError;
+  final bool hasManualError;
   final List<Validator> validators;
 
   @override
@@ -95,6 +97,7 @@ class SStandardField extends StatelessObserverWidget {
             inputFormatters: inputFormatters,
             isError: isError,
             validators: validators,
+            hasManualError: hasManualError,
           )
         : SimpleLightStandardField(
             controller: controller,
@@ -123,6 +126,7 @@ class SStandardField extends StatelessObserverWidget {
             inputFormatters: inputFormatters,
             isError: isError,
             validators: validators,
+            hasManualError: hasManualError,
           );
   }
 }

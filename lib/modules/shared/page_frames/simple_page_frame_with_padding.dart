@@ -10,6 +10,7 @@ class SPageFrameWithPadding extends StatelessObserverWidget {
     Key? key,
     this.header,
     this.loading,
+    this.customLoader,
     this.bottomNavigationBar,
     this.loaderText,
     this.color = Colors.transparent,
@@ -23,6 +24,7 @@ class SPageFrameWithPadding extends StatelessObserverWidget {
   final Color color;
   final bool resizeToAvoidBottomInset;
   final StackLoaderStore? loading;
+  final Widget? customLoader;
   final Widget? bottomNavigationBar;
 
   @override
@@ -34,6 +36,7 @@ class SPageFrameWithPadding extends StatelessObserverWidget {
       body: StackLoader(
         loaderText: loaderText,
         loading: loading,
+        customLoader: customLoader,
         child: SPaddingH24(
           child: Column(
             children: [

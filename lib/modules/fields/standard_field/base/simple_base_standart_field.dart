@@ -29,6 +29,7 @@ class SimpleBaseStandardField extends StatefulWidget {
     this.hideSpace = false,
     this.isError = false,
     this.validators = const [],
+    this.hasManualError = false,
     required this.labelText,
   }) : super(key: key);
 
@@ -53,6 +54,7 @@ class SimpleBaseStandardField extends StatefulWidget {
   final bool hideSpace;
   final String labelText;
   final bool isError;
+  final bool hasManualError;
   final List<Validator> validators;
 
   @override
@@ -107,7 +109,9 @@ class _SimpleBaseStandardFieldState extends State<SimpleBaseStandardField> {
           cursorColor: SColorsLight().blue,
           cursorRadius: Radius.zero,
           style: sSubtitle2Style.copyWith(
-            color: widget.isError ? SColorsLight().red : SColorsLight().black,
+            color: (widget.isError || widget.hasManualError)
+                ? SColorsLight().red
+                : SColorsLight().black,
           ),
           validator: (value) {
             for (final validator in widget.validators) {

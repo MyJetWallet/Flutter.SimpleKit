@@ -29,6 +29,7 @@ class SimpleLightStandardField extends StatelessWidget {
     this.enabled = true,
     this.hideSpace = false,
     this.isError = false,
+    this.hasManualError = false,
     this.validators = const [],
     required this.labelText,
   })  : assert(
@@ -63,6 +64,7 @@ class SimpleLightStandardField extends StatelessWidget {
   final bool hideSpace;
   final String labelText;
   final bool isError;
+  final bool hasManualError;
   final List<Validator> validators;
 
   @override
@@ -90,6 +92,7 @@ class SimpleLightStandardField extends StatelessWidget {
       enableInteractiveSelection: enableInteractiveSelection,
       inputFormatters: inputFormatters,
       hideSpace: hideSpace,
+      hasManualError: hasManualError,
       suffixIcons: [
         if (!hideIconsIfNotEmpty || !controller2.text.isNotEmpty)
           ...?suffixIcons,
