@@ -11,11 +11,11 @@ import 'components/numeric_keyboard_row.dart';
 class SNumericKeyboardPin extends StatefulWidget {
   const SNumericKeyboardPin({
     Key? key,
-    this.hideBiometricButton,
+    this.hideBiometricButton = false,
     required this.onKeyPressed,
   }) : super(key: key);
 
-  final bool? hideBiometricButton;
+  final bool hideBiometricButton;
   final void Function(String) onKeyPressed;
 
   @override
@@ -31,6 +31,7 @@ class _SNumericKeyboardPinState extends State<SNumericKeyboardPin> {
   late Widget biometricIcon;
   late Widget biometricPressedIcon;
   late String biometricIconValue;
+  late bool biometricHide;
 
   Future<bool> getBiometricStatus() async {
     try {
@@ -41,6 +42,7 @@ class _SNumericKeyboardPinState extends State<SNumericKeyboardPin> {
         biometricPressedIcon =
             _iconPressedBasedOnBiometricStatus(biometricStatusData);
         biometricIconValue = _realValueOfBiometricButton(biometricStatusData);
+        biometricHide = _hideBiometricButton(biometricStatusData);
       });
 
       return true;
@@ -49,6 +51,7 @@ class _SNumericKeyboardPinState extends State<SNumericKeyboardPin> {
         biometricIcon = const SizedBox();
         biometricPressedIcon = const SizedBox();
         biometricIconValue = '';
+        biometricHide = true;
       });
 
       return false;
@@ -60,30 +63,26 @@ class _SNumericKeyboardPinState extends State<SNumericKeyboardPin> {
     return FutureBuilder<bool>(
       future: getBiometricStatus(),
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          bool _hideBiometricButton() => biometricIcon is SizedBox;
-
-          return NumericKeyboardFrame(
-            height: 354.0,
-            paddingTop: 40.0,
-            heightBetweenRows: 10,
-            lastRow: NumericKeyboardRow(
-              icon1: biometricIcon,
-              iconPressed1: biometricPressedIcon,
-              realValue1: biometricIconValue,
-              hideIcon1: widget.hideBiometricButton ?? _hideBiometricButton(),
-              frontKey2: zero,
-              realValue2: zero,
-              icon3: const SNumericKeyboardEraseIcon(),
-              iconPressed3: const SNumericKeyboardErasePressedIcon(),
-              realValue3: backspace,
-              onKeyPressed: widget.onKeyPressed,
-            ),
-            onKeyPressed: widget.onKeyPressed,
-          );
-        } else {
-          return const SizedBox.shrink();
-        }
+        return snapshot.hasData
+            ? NumericKeyboardFrame(
+                height: 354.0,
+                paddingTop: 40.0,
+                heightBetweenRows: 10,
+                lastRow: NumericKeyboardRow(
+                  icon1: biometricIcon,
+                  iconPressed1: biometricPressedIcon,
+                  realValue1: biometricIconValue,
+                  hideIcon1: widget.hideBiometricButton || biometricHide,
+                  frontKey2: zero,
+                  realValue2: zero,
+                  icon3: const SNumericKeyboardEraseIcon(),
+                  iconPressed3: const SNumericKeyboardErasePressedIcon(),
+                  realValue3: backspace,
+                  onKeyPressed: widget.onKeyPressed,
+                ),
+                onKeyPressed: widget.onKeyPressed,
+              )
+            : const SizedBox.shrink();
       },
     );
   }
@@ -117,4 +116,8 @@ Widget _iconPressedBasedOnBiometricStatus(BiometricStatus bioStatus) {
   } else {
     return const SizedBox();
   }
+}
+
+bool _hideBiometricButton(BiometricStatus bioStatus) {
+  return bioStatus == BiometricStatus.none;
 }

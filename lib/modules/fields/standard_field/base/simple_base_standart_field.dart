@@ -147,7 +147,10 @@ class _SimpleBaseStandardFieldState extends State<SimpleBaseStandardField> {
                         const SpaceW20(),
                     ],
                 if (widget.isError) ...[
-                  const SpaceW40(),
+                  if (!widget.hideIconsIfError)
+                    const SpaceW20()
+                  else
+                    const SpaceW40(),
                   GestureDetector(
                     onTap: widget.onErrorIconTap,
                     child: const SErrorIcon(),
