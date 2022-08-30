@@ -23,6 +23,7 @@ void sShowAlertPopup(
   bool isNeedPrimaryButton = true,
   bool isNeedCancelButton = false,
   SButtonType primaryButtonType = SButtonType.primary1,
+  SWidgetSize size = SWidgetSize.medium,
   required String primaryText,
   required String primaryButtonName,
   required Function() onPrimaryButtonTap,
@@ -34,14 +35,13 @@ void sShowAlertPopup(
       return WillPopScope(
         onWillPop: () {
           onWillPop?.call();
-
           return Future.value(willPopScope);
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Dialog(
-              insetPadding: (Platform.isAndroid)
+              insetPadding: (Platform.isAndroid || size == SWidgetSize.small)
                   ? const EdgeInsets.all(24.0)
                   : const EdgeInsets.symmetric(horizontal: 24.0),
               shape: RoundedRectangleBorder(

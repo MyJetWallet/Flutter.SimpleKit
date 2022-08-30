@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_kit/modules/bottom_navigation_bar/components/notification_box.dart';
 import 'package:simple_kit/modules/colors/simple_colors_light.dart';
-import 'package:simple_kit/modules/shared/simple_transparent_ink_well.dart';
 
 import '../../simple_kit.dart';
 
@@ -9,6 +8,7 @@ class SBottomNavigationBar extends StatefulWidget {
   const SBottomNavigationBar({
     Key? key,
     this.marketNotifications = 0,
+    required this.cardNotifications,
     this.portfolioNotifications = 0,
     this.earnNotifications = 0,
     this.profileNotifications = 0,
@@ -28,6 +28,7 @@ class SBottomNavigationBar extends StatefulWidget {
   final int selectedIndex;
   final bool actionActive;
   final bool earnEnabled;
+  final bool cardNotifications;
   final void Function() onActionTap;
   final void Function(int) onChanged;
 
@@ -195,6 +196,7 @@ class _SBottomNavigationBarState extends State<SBottomNavigationBar>
                           const SProfileDefaultIcon(),
                         NotificationBox(
                           notifications: widget.profileNotifications,
+                          cardsFailed: widget.cardNotifications,
                         ),
                       ],
                     ),

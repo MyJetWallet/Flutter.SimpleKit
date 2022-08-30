@@ -5,22 +5,27 @@ class NotificationBox extends StatelessWidget {
   const NotificationBox({
     Key? key,
     required this.notifications,
+    this.cardsFailed = false,
   }) : super(key: key);
 
   final int notifications;
+  final bool cardsFailed;
 
   @override
   Widget build(BuildContext context) {
-    var text = '$notifications';
+    var text = cardsFailed ? ' ! ' : '$notifications';
 
-    if (notifications >= 100) text = '99+';
+    if (notifications >= 100 && !cardsFailed) text = '99+';
 
-    return notifications == 0
+    return notifications == 0 && !cardsFailed
         ? const SizedBox()
         : Positioned(
             right: 0,
             child: Container(
-              margin: const EdgeInsets.only(top: 6.0, right: 6.0),
+              margin: const EdgeInsets.only(
+                top: 6.0,
+                right: 6.0,
+              ),
               child: Container(
                 padding: const EdgeInsets.all(2.0),
                 decoration: BoxDecoration(
@@ -28,15 +33,21 @@ class NotificationBox extends StatelessWidget {
                   borderRadius: BorderRadius.circular(18.0),
                 ),
                 child: ConstrainedBox(
-                  constraints:
-                      const BoxConstraints(minWidth: 18.0, minHeight: 18.0),
-                  child: Container(
+                  constraints: const BoxConstraints(
+                    minWidth: 18.0,
+                    minHeight: 18.0,
+                  ),
+                  child: DecoratedBox(
                     decoration: BoxDecoration(
-                      color: SColorsLight().blue,
+                      color: cardsFailed
+                          ? SColorsLight().red
+                          : SColorsLight().blue,
                       borderRadius: BorderRadius.circular(18.0),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 3.4),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 3.4,
+                      ),
                       child: Center(
                         child: Text(
                           text,
