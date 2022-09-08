@@ -13,6 +13,7 @@ class SMarketHeader extends StatelessWidget {
     required this.percent,
     required this.isPositive,
     required this.showInfo,
+    required this.isLoader,
   }) : super(key: key);
 
   final void Function()? onSearchButtonTap;
@@ -21,6 +22,7 @@ class SMarketHeader extends StatelessWidget {
   final String percent;
   final bool isPositive;
   final bool showInfo;
+  final bool isLoader;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class SMarketHeader extends StatelessWidget {
             title: title,
             onSearchButtonTap: onSearchButtonTap,
           ),
-          if (showInfo)
+          if (showInfo) ...[
             Row(
               textBaseline: TextBaseline.alphabetic,
               crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -74,6 +76,16 @@ class SMarketHeader extends StatelessWidget {
                 ),
               ],
             ),
+          ],
+          if (isLoader) ...[
+            const SizedBox(
+              height: 18,
+            ),
+            const SSkeletonTextLoader(
+              height: 16,
+              width: 159,
+            ),
+          ],
         ],
       ),
     );
