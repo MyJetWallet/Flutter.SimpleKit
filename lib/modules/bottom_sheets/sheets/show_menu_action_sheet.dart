@@ -34,7 +34,7 @@ void sShowMenuActionSheet({
     onWillPop: () => Future.value(true),
     transitionAnimationController: transitionAnimationController,
     children: [
-      if (isNotEmptyBalance && isBuyAvailable)
+      if (isBuyAvailable)
         SActionItem(
           onTap: () => onBuy(),
           icon: const SActionBuyIcon(),
