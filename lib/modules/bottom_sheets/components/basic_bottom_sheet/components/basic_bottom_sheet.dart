@@ -80,7 +80,7 @@ class _BasicBottomSheetState extends State<BasicBottomSheet> {
   }
 
   void onDissmisAction(BuildContext context) {
-    if (!isClosing && !isAnimating) {
+    if (!isClosing) {
       setState(() {
         isClosing = true;
       });
