@@ -13,7 +13,7 @@ class NotificationBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var text = cardsFailed ? ' ! ' : ' $notifications';
+    var text = cardsFailed ? ' ! ' : '$notifications';
 
     if (notifications >= 100 && !cardsFailed) text = '99+';
 
@@ -45,8 +45,9 @@ class NotificationBox extends StatelessWidget {
                       borderRadius: BorderRadius.circular(18.0),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 3.4,
+                      padding: const EdgeInsets.only(
+                        left: 4.4,
+                        right: 3.4,
                       ),
                       child: Center(
                         child: Text(
