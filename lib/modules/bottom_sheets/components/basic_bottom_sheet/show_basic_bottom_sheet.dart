@@ -18,7 +18,7 @@ void sShowBasicBottomSheet({
   required List<Widget> children,
   required BuildContext context,
 }) {
-  showCupertinoModalBottomSheet(
+  showBottomSheet(
     context: context,
     backgroundColor: Colors.transparent,
     builder: (context) {
