@@ -23,6 +23,8 @@ class SimpleBaseSvg56X56 extends StatelessWidget {
       child: SvgPicture.asset(
         assetName,
         color: color,
+        height: 56.0,
+        width: 56.0,
         package: 'simple_kit',
       ),
     );
