@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:simple_kit/modules/buttons/simple_icon_button.dart';
 import 'package:simple_kit/modules/colors/simple_colors_light.dart';
 import 'package:simple_kit/modules/icons/24x24/public/copy/simple_copy_icon.dart';
@@ -9,7 +10,7 @@ import 'package:simple_kit/modules/shared/simple_skeleton_text_loader.dart';
 import 'package:simple_kit/modules/shared/simple_spacers.dart';
 import 'package:simple_kit/modules/texts/simple_text_styles.dart';
 
-class SAddressFieldWithCopy extends StatelessWidget {
+class SAddressFieldWithCopy extends StatefulObserverWidget {
   const SAddressFieldWithCopy({
     Key? key,
     this.realValue,
@@ -32,17 +33,27 @@ class SAddressFieldWithCopy extends StatelessWidget {
   final String afterCopyText;
 
   @override
-  Widget build(BuildContext context) {
-    /*
-    final animationController = useAnimationController(
+  State<SAddressFieldWithCopy> createState() => _SAddressFieldWithCopyState();
+}
+
+class _SAddressFieldWithCopyState extends State<SAddressFieldWithCopy>
+  with SingleTickerProviderStateMixin {
+  late AnimationController animationController;
+  late Animation<Offset> scaleAnimation;
+  String copiedText = '';
+
+  @override
+  void initState() {
+    // animationController intentionally is not disposed,
+    // because bottomSheet will dispose it on its own
+    animationController = AnimationController(
+      vsync: this,
       duration: const Duration(milliseconds: 200),
       reverseDuration: const Duration(milliseconds: 200),
     );
-    
-
-    final scaleAnimation = Tween(
-      begin: 0.0,
-      end: -64.0,
+    scaleAnimation = Tween<Offset>(
+      begin: const Offset(0.0, 0.0),
+      end: Offset(0.0, -64.0),
     ).animate(
       CurvedAnimation(
         parent: animationController,
@@ -50,10 +61,22 @@ class SAddressFieldWithCopy extends StatelessWidget {
         reverseCurve: Curves.easeIn,
       ),
     );
+    scaleAnimation.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
 
-    final translateOffset = Offset(0, scaleAnimation.value);
-
-    //useListenable(animationController);
+  @override
+  Widget build(BuildContext context) {
+    final realValue = widget.realValue;
+    final onTap = widget.onTap;
+    final then = widget.then;
+    final actionIcon = widget.actionIcon;
+    final valueLoading = widget.valueLoading;
+    final header = widget.header;
+    final value = widget.value;
+    final afterCopyText = widget.afterCopyText;
 
     void _onCopyAction() {
       Clipboard.setData(
@@ -62,7 +85,7 @@ class SAddressFieldWithCopy extends StatelessWidget {
         ),
       );
       animationController.forward().then(
-        (_) async {
+            (_) async {
           await Future.delayed(const Duration(seconds: 2));
           await animationController.animateBack(0);
         },
@@ -71,13 +94,16 @@ class SAddressFieldWithCopy extends StatelessWidget {
       then?.call();
     }
 
-    */
+    @override
+    void dispose() {
+      animationController.dispose();
+      super.dispose();
+    }
 
     return Stack(
       children: [
-        /*
         Transform.translate(
-          offset: translateOffset,
+          offset: scaleAnimation.value,
           child: Container(
             color: SColorsLight().greenLight,
             height: 64.0,
@@ -92,7 +118,7 @@ class SAddressFieldWithCopy extends StatelessWidget {
             ),
           ),
         ),
-        
+
         Material(
           color: SColorsLight().white,
           child: InkWell(
@@ -153,7 +179,6 @@ class SAddressFieldWithCopy extends StatelessWidget {
             ),
           ),
         ),
-        */
       ],
     );
   }
