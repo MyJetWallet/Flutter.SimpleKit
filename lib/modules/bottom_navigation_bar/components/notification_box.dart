@@ -46,7 +46,7 @@ class NotificationBox extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(
-                        left: 4.4,
+                        left: 3.4,
                         right: 3.4,
                       ),
                       child: Center(
