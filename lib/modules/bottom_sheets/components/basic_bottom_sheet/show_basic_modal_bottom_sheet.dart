@@ -14,6 +14,7 @@ void sShowBasicModalBottomSheet({
   AnimationController? transitionAnimationController,
   Future<bool> Function()? onWillPop,
   bool expanded = false,
+  bool enableDrag = true,
   bool removeBottomSheetBar = false,
   bool removeBarPadding = false,
   bool removePinnedPadding = false,
@@ -27,6 +28,7 @@ void sShowBasicModalBottomSheet({
     context: context,
     shadow: const BoxShadow(color: Colors.transparent),
     backgroundColor: Colors.transparent,
+    enableDrag: enableDrag,
     builder: (context) {
       return BasicBottomSheet(
         color: color ?? SColorsLight().white,
