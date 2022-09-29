@@ -8,12 +8,14 @@ import '../../simple_kit.dart';
 class SActionConfirmText extends StatelessWidget {
   const SActionConfirmText({
     Key? key,
+    this.infoAction,
     this.baseline,
     this.valueColor,
     this.valueDescription,
     this.animation,
     this.timerLoading = false,
     this.contentLoading = false,
+    this.infoIcon = false,
     this.minValueWidth = 100,
     this.maxValueWidth = 180,
     required this.name,
@@ -23,6 +25,7 @@ class SActionConfirmText extends StatelessWidget {
   /// Needed for cases when SActionConfirmText goes after SActionConfirmText
   /// Because SActionConfirmText gives + 4px in height
   /// because of the text height
+  final Function()? infoAction;
   final double? baseline;
   final Color? valueColor;
   final String? valueDescription;
@@ -31,6 +34,7 @@ class SActionConfirmText extends StatelessWidget {
   // Needed to display Timer
   final bool timerLoading;
   final bool contentLoading;
+  final bool infoIcon;
   final String name;
   final String value;
   final double minValueWidth;
@@ -49,7 +53,27 @@ class SActionConfirmText extends StatelessWidget {
             child: Baseline(
               baseline: 19.0,
               baselineType: TextBaseline.alphabetic,
-              child: Text(
+              child: infoIcon ? Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    name,
+                    maxLines: 10,
+                    style: sBodyText2Style.copyWith(
+                      color: SColorsLight().grey1,
+                    ),
+                  ),
+                  const SpaceW12(),
+                  SIconButton(
+                    onTap: () {
+                      infoAction?.call();
+                    },
+                    defaultIcon: SInfoIcon(
+                      color: SColorsLight().grey1,
+                    ),
+                  ),
+                ],
+              ) : Text(
                 name,
                 maxLines: 10,
                 style: sBodyText2Style.copyWith(
