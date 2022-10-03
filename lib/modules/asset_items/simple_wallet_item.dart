@@ -9,6 +9,8 @@ import '../../simple_kit.dart';
 class SWalletItem extends StatelessWidget {
   const SWalletItem({
     Key? key,
+    this.currencyPrefix,
+    this.currencySymbol = '',
     this.amountDecimal,
     this.amount,
     this.decline,
@@ -28,6 +30,8 @@ class SWalletItem extends StatelessWidget {
   }) : super(key: key);
 
   final bool? decline;
+  final String? currencyPrefix;
+  final String currencySymbol;
   final double? amountDecimal;
   final String? amount;
   final bool removeDivider;
@@ -48,11 +52,15 @@ class SWalletItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var textColor = SColorsLight().green;
     var borderColor = SColorsLight().greenLight;
-    final formattedAmount = amountDecimal == 0 ? '\$0' : amount;
+    final emptyCashText = '${currencyPrefix ?? ''}0'
+        '${currencyPrefix == null ? ' $currencySymbol' : ''}';
+    final formattedAmount = amountDecimal == 0 ? emptyCashText : amount;
     final isSecondaryTextVisible =
-        showSecondaryText && !(isPendingDeposit && formattedAmount == '\$0');
+        showSecondaryText &&
+            !(isPendingDeposit && formattedAmount == emptyCashText);
     final isAmountVisible =
-        amount != null && !(isPendingDeposit && formattedAmount == '\$0');
+        amount != null &&
+            !(isPendingDeposit && formattedAmount == emptyCashText);
 
     if (decline ?? false) {
       textColor = SColorsLight().red;

@@ -7,6 +7,8 @@ import 'simple_referral_stats_item.dart';
 class SReferralStats extends StatelessWidget {
   const SReferralStats({
     Key? key,
+    this.currencyPrefix,
+    this.currencySymbol = '',
     required this.referralInvited,
     required this.referralActivated,
     required this.bonusEarned,
@@ -22,6 +24,8 @@ class SReferralStats extends StatelessWidget {
     required this.totalText,
   }) : super(key: key);
 
+  final String? currencyPrefix;
+  final String currencySymbol;
   final int referralInvited;
   final int referralActivated;
   final double bonusEarned;
@@ -104,17 +108,20 @@ class SReferralStats extends StatelessWidget {
                 ),
                 SReferralStatsItem(
                   text: bonusEarnedText,
-                  value: '\$$bonusEarned',
+                  value: '${currencyPrefix ?? ''}$bonusEarned'
+                      '${currencyPrefix == null ? ' $currencySymbol' : ''}',
                 ),
                 SReferralStatsItem(
                   text: commissionEarnedText,
-                  value: '\$$commissionEarned',
+                  value: '${currencyPrefix ?? ''}$commissionEarned'
+                      '${currencyPrefix == null ? ' $currencySymbol' : ''}',
                 ),
                 const SpaceH40(),
                 const SDivider(),
                 SReferralStatsItem(
                   text: totalText,
-                  value: '\$$total',
+                  value: '${currencyPrefix ?? ''}$total'
+                      '${currencyPrefix == null ? ' $currencySymbol' : ''}',
                   valueColor: SColorsLight().green,
                 ),
                 const SpaceH30(),
