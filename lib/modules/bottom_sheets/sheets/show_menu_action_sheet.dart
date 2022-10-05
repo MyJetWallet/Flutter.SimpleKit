@@ -70,12 +70,14 @@ void sShowMenuActionSheet({
           description: actionItemLocalized[5]['description']!,
         ),
       ],
-      SActionItem(
-        onTap: onSend,
-        icon: const SActionSendIcon(),
-        name: actionItemLocalized[6]['name']!,
-        description: actionItemLocalized[6]['description']!,
-  ),
+      if (isSendAvailable && isNotEmptyBalance) ...[
+        SActionItem(
+          onTap: onSend,
+          icon: const SActionSendIcon(),
+          name: actionItemLocalized[6]['name']!,
+          description: actionItemLocalized[6]['description']!,
+        ),
+      ],
       const SpaceH20(),
     ],
   );
