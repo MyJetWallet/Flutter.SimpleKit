@@ -46,10 +46,14 @@ class _StackLoaderState extends State<StackLoader> {
       children: [
         widget.child,
         if (loadingValue) ...[
-          const LoaderBackground(),
-          LoaderContainer(
-            loadingText: widget.loaderText,
-          ),
+          if (widget.customLoader != null) ...[
+            widget.customLoader!,
+          ] else ...[
+            const LoaderBackground(),
+            LoaderContainer(
+              loadingText: widget.loaderText,
+            ),
+          ],
         ],
         if (loadSuccessValue) ...[
           const LoaderBackground(),
