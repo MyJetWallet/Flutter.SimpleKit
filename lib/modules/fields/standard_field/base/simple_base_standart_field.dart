@@ -16,6 +16,7 @@ class SimpleBaseStandardField extends StatefulWidget {
     this.onErrorIconTap,
     this.onChanged,
     this.suffixIcons,
+    this.eraseIcon,
     this.inputFormatters,
     this.textCapitalization,
     this.disableErrorOnChanged = true,
@@ -41,6 +42,7 @@ class SimpleBaseStandardField extends StatefulWidget {
   final Iterable<String>? autofillHints;
   final Function(String)? onChanged;
   final List<Widget>? suffixIcons;
+  final List<Widget>? eraseIcon;
   final List<TextInputFormatter>? inputFormatters;
   final TextCapitalization? textCapitalization;
   final bool disableErrorOnChanged;
@@ -146,11 +148,18 @@ class _SimpleBaseStandardFieldState extends State<SimpleBaseStandardField> {
                       if (icon != widget.suffixIcons!.last && !widget.hideSpace)
                         const SpaceW20(),
                     ],
+                if (widget.eraseIcon != null) ...[
+                  ...widget.eraseIcon!,
+                ],
                 if (widget.isError) ...[
-                  if (!widget.hideIconsIfError)
-                    const SpaceW20()
-                  else
-                    const SpaceW40(),
+                  if (widget.eraseIcon == null) ...[
+                    if (!widget.hideIconsIfError)
+                      const SpaceW20()
+                    else
+                      const SpaceW40(),
+                  ] else ...[
+                    const SpaceW16(),
+                  ],
                   GestureDetector(
                     onTap: widget.onErrorIconTap,
                     child: const SErrorIcon(),
