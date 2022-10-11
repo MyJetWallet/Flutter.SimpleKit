@@ -8,7 +8,9 @@ Future<bool> makeAuthWithBiometrics(String localizedReasonText) async {
     final availableBio = await auth.getAvailableBiometrics();
 
     final face = availableBio.contains(BiometricType.face);
-    final fingerprint = availableBio.contains(BiometricType.fingerprint);
+    final fingerprint = availableBio.contains(BiometricType.fingerprint) ||
+        availableBio.contains(BiometricType.strong) ||
+        availableBio.contains(BiometricType.weak);
 
     if (face || fingerprint) {
       final result = await auth.authenticate(
