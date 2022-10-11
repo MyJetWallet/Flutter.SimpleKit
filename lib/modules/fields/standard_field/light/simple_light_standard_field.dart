@@ -96,6 +96,8 @@ class SimpleLightStandardField extends StatelessWidget {
       suffixIcons: [
         if (!hideIconsIfNotEmpty || !controller2.text.isNotEmpty)
           ...?suffixIcons,
+      ],
+      eraseIcon: [
         if (controller2.text.isNotEmpty && !hideClearButton) ...[
           const SpaceW16(),
           GestureDetector(
