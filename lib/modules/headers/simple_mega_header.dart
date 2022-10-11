@@ -8,6 +8,7 @@ class SMegaHeader extends StatelessWidget {
     this.crossAxisAlignment = CrossAxisAlignment.start,
     this.titleAlign = TextAlign.center,
     this.showBackButton = true,
+    this.rightIcon,
     required this.title,
   }) : super(key: key);
 
@@ -16,6 +17,7 @@ class SMegaHeader extends StatelessWidget {
   final TextAlign titleAlign;
   final String title;
   final bool showBackButton;
+  final Widget? rightIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +30,7 @@ class SMegaHeader extends StatelessWidget {
         children: [
           const SpaceH64(),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               if (showBackButton)
                 SIconButton(
@@ -40,6 +43,9 @@ class SMegaHeader extends StatelessWidget {
                   height: 24,
                   width: 24,
                 ),
+              if (rightIcon != null) ...[
+                rightIcon!,
+              ],
             ],
           ),
           Baseline(

@@ -8,6 +8,8 @@ class SMarketHeader extends StatelessWidget {
   const SMarketHeader({
     Key? key,
     this.onSearchButtonTap,
+    this.onFilterButtonTap,
+    this.activeFilters = 0,
     required this.title,
     required this.subtitle,
     required this.percent,
@@ -16,7 +18,9 @@ class SMarketHeader extends StatelessWidget {
     required this.isLoader,
   }) : super(key: key);
 
+  final int activeFilters;
   final void Function()? onSearchButtonTap;
+  final void Function()? onFilterButtonTap;
   final String title;
   final String subtitle;
   final String percent;
@@ -39,6 +43,8 @@ class SMarketHeader extends StatelessWidget {
             key: key,
             title: title,
             onSearchButtonTap: onSearchButtonTap,
+            onFilterButtonTap: onFilterButtonTap,
+            activeFilters: activeFilters,
           ),
           if (showInfo) ...[
             Row(
