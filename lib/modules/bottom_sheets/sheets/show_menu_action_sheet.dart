@@ -11,6 +11,7 @@ void sShowMenuActionSheet({
   bool isBuyFromCardAvailable = true,
   bool isReceiveAvailable = true,
   bool isSendAvailable = true,
+  bool isConvertAvailable = true,
   required BuildContext context,
   required void Function() onBuy,
   required void Function() onBuyFromCard,
@@ -48,12 +49,14 @@ void sShowMenuActionSheet({
           name: actionItemLocalized[2]['name']!,
           description: actionItemLocalized[2]['description']!,
         ),
-        SActionItem(
-          onTap: onConvert,
-          icon: const SActionConvertIcon(),
-          name: actionItemLocalized[3]['name']!,
-          description: actionItemLocalized[3]['description']!,
-        ),
+        if (isConvertAvailable) ...[
+          SActionItem(
+            onTap: onConvert,
+            icon: const SActionConvertIcon(),
+            name: actionItemLocalized[3]['name']!,
+            description: actionItemLocalized[3]['description']!,
+          ),
+        ],
       ],
       if (isBuyFromCardAvailable)
         SActionItem(

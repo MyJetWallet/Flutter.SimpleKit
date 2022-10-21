@@ -27,6 +27,27 @@ class SPageFrame extends StatelessObserverWidget {
 
   @override
   Widget build(BuildContext context) {
+    return StackLoader(
+      loaderText: loaderText,
+      loading: loading,
+      loadSuccess: loadSuccess,
+      child: Scaffold(
+        backgroundColor: sKit.getTheme().scaffoldBackgroundColor,
+        bottomNavigationBar: bottomNavigationBar,
+        body: Column(
+          children: [
+            if (header != null) header!,
+            Expanded(
+              child: Material(
+                color: color,
+                child: child,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
     return Scaffold(
       backgroundColor: sKit.getTheme().scaffoldBackgroundColor,
       bottomNavigationBar: bottomNavigationBar,

@@ -6,12 +6,18 @@ import 'package:simple_kit/modules/icons/20x20/light/minus/simple_light_minus_ic
 import 'package:simple_kit/utils/enum.dart';
 
 class SMinusIcon extends StatelessObserverWidget {
-  const SMinusIcon({Key? key}) : super(key: key);
+  const SMinusIcon({Key? key, this.color}) : super(key: key);
+
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return sKit.currentTheme == STheme.dark
-        ? const SimpleLightMinusIcon()
-        : const SimpleLightMinusIcon();
+        ? SimpleLightMinusIcon(
+            color: color,
+          )
+        : SimpleLightMinusIcon(
+            color: color,
+          );
   }
 }

@@ -6,12 +6,17 @@ import 'package:simple_kit/modules/icons/24x24/light/action_receive/simple_light
 import 'package:simple_kit/utils/enum.dart';
 
 class SActionReceiveIcon extends StatelessObserverWidget {
-  const SActionReceiveIcon({Key? key}) : super(key: key);
+  const SActionReceiveIcon({
+    Key? key,
+    this.color,
+  }) : super(key: key);
+
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return sKit.currentTheme == STheme.dark
-        ? const SimpleLightActionReceiveIcon()
-        : const SimpleLightActionReceiveIcon();
+        ? SimpleLightActionReceiveIcon(color: color)
+        : SimpleLightActionReceiveIcon(color: color);
   }
 }
