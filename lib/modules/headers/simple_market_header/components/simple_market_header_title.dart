@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:simple_kit/modules/bottom_navigation_bar/components/notification_box.dart';
 import 'package:simple_kit/modules/colors/simple_colors_light.dart';
+import 'package:simple_kit/modules/headers/simple_market_header/components/simple_market_header_filter.dart';
 import 'package:simple_kit/modules/icons/24x24/public/filter/simple_filter_icon.dart';
 
 import '../../../../simple_kit.dart';
@@ -45,6 +45,12 @@ class SimpleMarketHeaderTitle extends StatelessWidget {
             ),
           ),
         if (onFilterButtonTap != null)
+          SimpleMarketHeaderFilter(
+            onFilterButtonTap: onFilterButtonTap,
+            activeFilters: activeFilters,
+          ),
+        /*
+        if (onFilterButtonTap != null)
           SizedBox(
             width: 35,
             height: 35,
@@ -83,6 +89,7 @@ class SimpleMarketHeaderTitle extends StatelessWidget {
               ),
             ),
           ),
+      */
       ],
     );
   }
