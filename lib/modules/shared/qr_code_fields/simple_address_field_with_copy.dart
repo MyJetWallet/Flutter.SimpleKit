@@ -18,6 +18,7 @@ class SAddressFieldWithCopy extends StatefulObserverWidget {
     this.then,
     this.actionIcon,
     this.valueLoading = false,
+    this.needPadding = true,
     required this.header,
     required this.value,
     required this.afterCopyText,
@@ -28,6 +29,7 @@ class SAddressFieldWithCopy extends StatefulObserverWidget {
   final Function()? then;
   final Widget? actionIcon;
   final bool valueLoading;
+  final bool needPadding;
   final String header;
   final String value;
   final String afterCopyText;
@@ -37,7 +39,7 @@ class SAddressFieldWithCopy extends StatefulObserverWidget {
 }
 
 class _SAddressFieldWithCopyState extends State<SAddressFieldWithCopy>
-  with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<Offset> scaleAnimation;
   String copiedText = '';
@@ -85,7 +87,7 @@ class _SAddressFieldWithCopyState extends State<SAddressFieldWithCopy>
         ),
       );
       animationController.forward().then(
-            (_) async {
+        (_) async {
           await Future.delayed(const Duration(seconds: 2));
           await animationController.animateBack(0);
         },
@@ -118,7 +120,6 @@ class _SAddressFieldWithCopyState extends State<SAddressFieldWithCopy>
             ),
           ),
         ),
-
         Material(
           color: SColorsLight().white,
           child: InkWell(
@@ -126,7 +127,10 @@ class _SAddressFieldWithCopyState extends State<SAddressFieldWithCopy>
             splashColor: Colors.transparent,
             onTap: valueLoading ? null : onTap,
             onLongPress: valueLoading ? null : () => _onCopyAction(),
-            child: SPaddingH24(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: widget.needPadding ? 24.0 : 0,
+              ),
               child: SizedBox(
                 height: 88.0,
                 child: Row(
