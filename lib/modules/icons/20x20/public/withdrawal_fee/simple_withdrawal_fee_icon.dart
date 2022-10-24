@@ -5,12 +5,17 @@ import 'package:simple_kit/modules/icons/20x20/light/withdrawal_fee/simple_light
 import 'package:simple_kit/utils/enum.dart';
 
 class SWithdrawalFeeIcon extends StatelessObserverWidget {
-  const SWithdrawalFeeIcon({Key? key}) : super(key: key);
+  const SWithdrawalFeeIcon({
+    Key? key,
+    this.color,
+  }) : super(key: key);
+
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return sKit.currentTheme == STheme.dark
-        ? const SimpleLightWithdrawalFeeIcon()
-        : const SimpleLightWithdrawalFeeIcon();
+        ? SimpleLightWithdrawalFeeIcon(color: color)
+        : SimpleLightWithdrawalFeeIcon(color: color);
   }
 }

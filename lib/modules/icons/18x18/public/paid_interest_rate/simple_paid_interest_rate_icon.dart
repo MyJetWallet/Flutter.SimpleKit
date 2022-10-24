@@ -6,12 +6,17 @@ import 'package:simple_kit/modules/icons/18x18/light/paid_interest_rate/simple_l
 import 'package:simple_kit/utils/enum.dart';
 
 class SPaidInterestRateIcon extends StatelessObserverWidget {
-  const SPaidInterestRateIcon({Key? key}) : super(key: key);
+  const SPaidInterestRateIcon({
+    Key? key,
+    this.color,
+  }) : super(key: key);
+
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return sKit.currentTheme == STheme.dark
-        ? const SimpleLightPaidInterestRateIcon()
-        : const SimpleLightPaidInterestRateIcon();
+        ? SimpleLightPaidInterestRateIcon(color: color)
+        : SimpleLightPaidInterestRateIcon(color: color);
   }
 }
