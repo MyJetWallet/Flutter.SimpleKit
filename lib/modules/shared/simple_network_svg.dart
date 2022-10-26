@@ -26,3 +26,31 @@ class SNetworkSvg24 extends StatelessWidget {
     );
   }
 }
+
+class SNetworkSvg extends StatelessWidget {
+  const SNetworkSvg({
+    Key? key,
+    this.color,
+    required this.url,
+    required this.width,
+    required this.height,
+  }) : super(key: key);
+
+  final Color? color;
+  final String url;
+  final double width;
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture.network(
+      url,
+      width: width,
+      height: height,
+      color: color,
+      placeholderBuilder: (_) {
+        return const SAssetPlaceholderIcon();
+      },
+    );
+  }
+}
