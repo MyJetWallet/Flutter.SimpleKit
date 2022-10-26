@@ -19,6 +19,7 @@ class SAddressFieldWithCopy extends StatefulObserverWidget {
     this.actionIcon,
     this.valueLoading = false,
     this.needPadding = true,
+    this.needFormatURL = true,
     required this.header,
     required this.value,
     required this.afterCopyText,
@@ -30,6 +31,7 @@ class SAddressFieldWithCopy extends StatefulObserverWidget {
   final Widget? actionIcon;
   final bool valueLoading;
   final bool needPadding;
+  final bool needFormatURL;
   final String header;
   final String value;
   final String afterCopyText;
@@ -157,7 +159,9 @@ class _SAddressFieldWithCopyState extends State<SAddressFieldWithCopy>
                               baseline: 16.0,
                               baselineType: TextBaseline.alphabetic,
                               child: Text(
-                                _shortReferralLink(value),
+                                widget.needFormatURL
+                                    ? _shortReferralLink(value)
+                                    : value,
                                 style: sSubtitle2Style,
                               ),
                             ),
