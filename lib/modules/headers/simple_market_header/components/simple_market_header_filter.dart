@@ -40,8 +40,8 @@ class _SimpleMarketHeaderFilterState extends State<SimpleMarketHeaderFilter> {
           highlighted ? const SPressedFilterIcon() : const SFilterIcon(),
           if (widget.activeFilters != 0) ...[
             Positioned(
-              right: 0,
-              bottom: 18,
+              left: 9,
+              bottom: 9,
               child: Container(
                 margin: const EdgeInsets.only(
                   top: 6.0,
