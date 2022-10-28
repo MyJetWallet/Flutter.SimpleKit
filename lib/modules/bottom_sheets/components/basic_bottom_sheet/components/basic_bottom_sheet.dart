@@ -165,6 +165,7 @@ class _BasicBottomSheetState extends State<BasicBottomSheet> {
                               : widget.minHeight ?? 0,
                         ),
                         child: ListView(
+                          padding: EdgeInsets.zero,
                           physics: widget.scrollable
                               ? null
                               : const NeverScrollableScrollPhysics(),

@@ -19,6 +19,7 @@ class SAddressFieldWithCopy extends StatefulObserverWidget {
     this.actionIcon,
     this.valueLoading = false,
     this.needPadding = true,
+    this.needInnerPadding = false,
     required this.header,
     required this.value,
     required this.afterCopyText,
@@ -30,6 +31,7 @@ class SAddressFieldWithCopy extends StatefulObserverWidget {
   final Widget? actionIcon;
   final bool valueLoading;
   final bool needPadding;
+  final bool needInnerPadding;
   final String header;
   final String value;
   final String afterCopyText;
@@ -122,62 +124,67 @@ class _SAddressFieldWithCopyState extends State<SAddressFieldWithCopy>
         ),
         Material(
           color: SColorsLight().white,
-          child: InkWell(
-            highlightColor: SColorsLight().grey4,
-            splashColor: Colors.transparent,
-            onTap: valueLoading ? null : onTap,
-            onLongPress: valueLoading ? null : () => _onCopyAction(),
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: widget.needPadding ? 24.0 : 0,
-              ),
-              child: SizedBox(
-                height: 88.0,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SpaceH22(),
-                          Text(
-                            header,
-                            style: sCaptionTextStyle.copyWith(
-                              color: SColorsLight().grey2,
-                            ),
-                          ),
-                          const SpaceH4(),
-                          if (valueLoading)
-                            const SSkeletonTextLoader(
-                              height: 16,
-                              width: 80,
-                            )
-                          else
-                            Baseline(
-                              baseline: 16.0,
-                              baselineType: TextBaseline.alphabetic,
-                              child: Text(
-                                _shortReferralLink(value),
-                                style: sSubtitle2Style,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: widget.needInnerPadding ? 24.0 : 0,
+            ),
+            child: InkWell(
+              highlightColor: SColorsLight().grey4,
+              splashColor: Colors.transparent,
+              onTap: valueLoading ? null : onTap,
+              onLongPress: valueLoading ? null : () => _onCopyAction(),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: widget.needPadding ? 24.0 : 0,
+                ),
+                child: SizedBox(
+                  height: 88.0,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SpaceH22(),
+                            Text(
+                              header,
+                              style: sCaptionTextStyle.copyWith(
+                                color: SColorsLight().grey2,
                               ),
                             ),
-                        ],
+                            const SpaceH4(),
+                            if (valueLoading)
+                              const SSkeletonTextLoader(
+                                height: 16,
+                                width: 80,
+                              )
+                            else
+                              Baseline(
+                                baseline: 16.0,
+                                baselineType: TextBaseline.alphabetic,
+                                child: Text(
+                                  _shortReferralLink(value),
+                                  style: sSubtitle2Style,
+                                ),
+                              ),
+                          ],
+                        ),
                       ),
-                    ),
-                    const SpaceW10(),
-                    SIconButton(
-                      onTap: valueLoading ? null : () => _onCopyAction(),
-                      defaultIcon: const SCopyIcon(),
-                      pressedIcon: const SCopyPressedIcon(),
-                    ),
-                    if (actionIcon != null) ...[
-                      const SpaceW20(),
+                      const SpaceW10(),
                       SIconButton(
-                        onTap: valueLoading ? null : onTap,
-                        defaultIcon: actionIcon!,
+                        onTap: valueLoading ? null : () => _onCopyAction(),
+                        defaultIcon: const SCopyIcon(),
+                        pressedIcon: const SCopyPressedIcon(),
                       ),
+                      if (actionIcon != null) ...[
+                        const SpaceW20(),
+                        SIconButton(
+                          onTap: valueLoading ? null : onTap,
+                          defaultIcon: actionIcon!,
+                        ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
               ),
             ),
