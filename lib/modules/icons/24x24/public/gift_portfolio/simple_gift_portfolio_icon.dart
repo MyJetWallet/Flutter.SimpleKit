@@ -6,12 +6,17 @@ import 'package:simple_kit/modules/icons/24x24/light/gift_portfolio/simple_light
 import 'package:simple_kit/utils/enum.dart';
 
 class SGiftPortfolioIcon extends StatelessObserverWidget {
-  const SGiftPortfolioIcon({Key? key}) : super(key: key);
+  const SGiftPortfolioIcon({
+    Key? key,
+    this.color,
+  }) : super(key: key);
+
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return sKit.currentTheme == STheme.dark
-        ? const SimpleLightGiftPortfolioIcon()
-        : const SimpleLightGiftPortfolioIcon();
+        ? SimpleLightGiftPortfolioIcon(color: color)
+        : SimpleLightGiftPortfolioIcon(color: color);
   }
 }
