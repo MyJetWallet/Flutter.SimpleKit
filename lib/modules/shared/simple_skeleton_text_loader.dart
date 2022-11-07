@@ -7,12 +7,14 @@ final _loaderRadius = BorderRadius.circular(20.0);
 class SSkeletonTextLoader extends StatefulWidget {
   const SSkeletonTextLoader({
     Key? key,
+    this.borderRadius,
     required this.height,
     required this.width,
   }) : super(key: key);
 
   final double height;
   final double width;
+  final BorderRadius? borderRadius;
 
   @override
   _SActionConfirmSkeletonLoaderState createState() =>
@@ -54,7 +56,7 @@ class _SActionConfirmSkeletonLoaderState extends State<SSkeletonTextLoader>
     );
 
     return ClipRRect(
-      borderRadius: _loaderRadius,
+      borderRadius: widget.borderRadius ?? _loaderRadius,
       child: Stack(
         children: [
           Container(
@@ -68,7 +70,7 @@ class _SActionConfirmSkeletonLoaderState extends State<SSkeletonTextLoader>
                   SColorsLight().grey5,
                 ],
               ),
-              borderRadius: _loaderRadius,
+              borderRadius: widget.borderRadius ?? _loaderRadius,
             ),
           ),
           Transform.translate(
@@ -84,7 +86,7 @@ class _SActionConfirmSkeletonLoaderState extends State<SSkeletonTextLoader>
                     spreadRadius: 10.0,
                   ),
                 ],
-                borderRadius: _loaderRadius,
+                borderRadius: widget.borderRadius ?? _loaderRadius,
               ),
             ),
           ),
